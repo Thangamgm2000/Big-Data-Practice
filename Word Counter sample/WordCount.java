@@ -85,7 +85,8 @@ public class WordCount extends Configured implements Tool
                   //For every key, sum the value
                   for (IntWritable val : values)
                    {sum += val.get();
-                    //System.out.println(val.get());}
+                    //System.out.println(val.get());
+                }
                    result.set(sum);
                    context.write(key, result);
                 }
