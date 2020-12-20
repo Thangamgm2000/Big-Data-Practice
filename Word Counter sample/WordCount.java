@@ -13,8 +13,8 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 import org.apache.hadoop.mapred.JobClient;
 import org.apache.hadoop.mapreduce.Reducer;
-import org.apache.hadoop.mapred.FileInputFormat;
-import org.apache.hadoop.mapred.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 
 /* The following class has the implementation of Mapper,Combiner,Reducer and the main method. 
@@ -94,23 +94,26 @@ public class WordCount extends Configured implements Tool
                 // Configuration processed by ToolRunner
                 Configuration conf = getConf();
                 
-                // Create a JobConf using the processed conf
-                JobConf job = new JobConf(conf, WordCount.class);
+                
                 
                 // Process custom command-line options
                 Path in = new Path(args[1]);
                 Path out = new Path(args[2]);
-                job.setJobName("word-count");
-                  job.setMapperClass(TokenizerMapper.class);
-                  //Set the combiner class name
-                  job.setCombinerClass(IntSumReducer.class);
-                  //Set the reducer class name
-                  job.setReducerClass(IntSumReducer.class);
-                  /*Output from reducer is the final result and Output is Key,Value pair.
-                  Inform Hadoop about the dataType ofKey and Value from reducer*/
-                  job.setOutputKeyClass(Text.class);
-                  job.setOutputValueClass(IntWritable.class);
-                // Specify various job-specific parameters     
+                Job job = Job.getInstance(conf, "word count");
+                // Set the class name in which main method resides.
+                job.setJarByClass(WordCount.class);
+                // Set the mapper class namejob.setMapperClass(TokenizerMapper.class);
+                //Set the combiner class namejob.setCombinerClass(IntSumReducer.class);
+                //Set the reducer class namejob.setReducerClass(IntSumReducer.class);
+                // Set the mapper class name
+                job.setMapperClass(TokenizerMapper.class);
+                //Set the combiner class name
+                job.setCombinerClass(IntSumReducer.class);
+                //Set the reducer class name
+                job.setReducerClass(IntSumReducer.class);
+                /*Output from reducer is the final result and Output is Key,Value pair.
+                Inform Hadoop about the dataType ofKey and Value from reducer*/
+                job.setOutputKeyClass(Text.class); 
                 
        
                 // Submit the job, then poll for progress until the job is complete
