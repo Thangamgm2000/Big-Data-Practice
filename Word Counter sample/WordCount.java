@@ -74,9 +74,12 @@ public class WordCount
                   Job job = Job.getInstance(conf, "word count");
                   // Set the class name in which main method resides.
                   job.setJarByClass(WordCount.class);
-                  // Set the mapper class namejob.setMapperClass(TokenizerMapper.class);
-                  //Set the combiner class namejob.setCombinerClass(IntSumReducer.class);
-                  //Set the reducer class namejob.setReducerClass(IntSumReducer.class);
+                  // Set the mapper class name
+                  job.setMapperClass(TokenizerMapper.class);
+                  //Set the combiner class name
+                  job.setCombinerClass(IntSumReducer.class);
+                  //Set the reducer class name
+                  job.setReducerClass(IntSumReducer.class);
                   /*Output from reducer is the final result and Output is Key,Value pair.
                   Inform Hadoop about the dataType ofKey and Value from reducer*/
                   job.setOutputKeyClass(Text.class);
