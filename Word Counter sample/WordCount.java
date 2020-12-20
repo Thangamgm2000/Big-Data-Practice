@@ -117,7 +117,7 @@ public class WordCount extends Configured implements Tool
                 
        
                 // Submit the job, then poll for progress until the job is complete
-                JobClient.runJob(job);
+                job.waitForCompletion(true)
                 return 0;
               }
             public static void main(String[] args) throws Exception 
