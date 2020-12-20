@@ -114,7 +114,8 @@ public class WordCount extends Configured implements Tool
                 /*Output from reducer is the final result and Output is Key,Value pair.
                 Inform Hadoop about the dataType ofKey and Value from reducer*/
                 job.setOutputKeyClass(Text.class); 
-                
+                FileInputFormat.addInputPath(job, in);
+                FileOutputFormat.setOutputPath(job, out);
        
                 // Submit the job, then poll for progress until the job is complete
                 job.waitForCompletion(true);
