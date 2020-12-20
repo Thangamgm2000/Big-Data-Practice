@@ -19,8 +19,10 @@ public class WordCount
        Will be InputValue for Reducer)*/
        public static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable>
        {
-           //Create new IntWritable objectprivate final static IntWritable one = new IntWritable(1);
-           //Create new Text objectprivate Text word = new Text();
+           //Create new IntWritable object
+           private final static IntWritable one = new IntWritable(1);
+           //Create new Text object
+           private Text word = new Text();
            /*User logic is placed inside map function.Output (Key,value) pair is written 
            to context in every stage,context facilitates the data movement fromstage to another stage.
            Eg: from mapper class to reducer class*/
@@ -64,7 +66,8 @@ public class WordCount
             }
             public static void main(String[] args) throws Exception 
             {
-                //Create an object of org.apache.hadoop.conf.ConfigurationConfiguration conf = new Configuration();
+                //Create an object of org.apache.hadoop.conf.Configuration
+                Configuration conf = new Configuration();
                 /* Create an object of org.apache.hadoop.mapreduce.Job.Creates a new Jobwith a given jobName.
                  The Job makes a copy of theConfiguration so that any necessary internal modifications do not
                   reflect on the incoming parameter.*/
