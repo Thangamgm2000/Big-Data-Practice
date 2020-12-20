@@ -97,8 +97,8 @@ public class WordCount extends Configured implements Tool
                 
                 
                 // Process custom command-line options
-                Path in = new Path(args[1]);
-                Path out = new Path(args[2]);
+                Path in = new Path(args[0]);
+                Path out = new Path(args[1]);
                 Job job = Job.getInstance(conf, "word count");
                 // Set the class name in which main method resides.
                 job.setJarByClass(WordCount.class);
