@@ -74,9 +74,6 @@ public class WordCount
                   Job job = Job.getInstance(conf, "word count");
                   // Set the class name in which main method resides.
                   job.setJarByClass(WordCount.class);
-                  // Set the mapper class namejob.setMapperClass(TokenizerMapper.class);
-                  //Set the combiner class namejob.setCombinerClass(IntSumReducer.class);
-                  //Set the reducer class namejob.setReducerClass(IntSumReducer.class);
                   // Set the mapper class name
                   job.setMapperClass(TokenizerMapper.class);
                   //Set the combiner class name
@@ -97,6 +94,3 @@ public class WordCount
                   System.exit(job.waitForCompletion(true) ? 0 : 1);
             }
 }
-        
-                
-                 
