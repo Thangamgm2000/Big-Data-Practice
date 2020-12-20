@@ -54,7 +54,6 @@ public class WordCount extends Configured implements Tool
                 while (itr.hasMoreTokens())
                  {
                      word.set(itr.nextToken());
-
                      // context.write(key,value)
                      context.write(word, one);
                     }
@@ -80,12 +79,13 @@ public class WordCount extends Configured implements Tool
               output.DataType of Value is Iterable<IntWritable>because outputValue from mapper
               is a IntWritable. As a particular key can have multiple values,we adopt
               Iterable<InputValue DataType>as the standard.*/
-              public void reduce(Text key, Iterable<IntWritable>values,Context context) throws IOException, InterruptedException
+              public void reduce(org.w3c.dom.Text key, Iterable<IntWritable>values,Context context) throws IOException, InterruptedException
               {
                   int sum = 0;
                   //For every key, sum the value
                   for (IntWritable val : values)
-                   {sum += val.get();}
+                   {sum += val.get();
+                    System.out.println(key.getTextContent()+" " +val.get());}
                    result.set(sum);
                    context.write(key, result);
                 }
